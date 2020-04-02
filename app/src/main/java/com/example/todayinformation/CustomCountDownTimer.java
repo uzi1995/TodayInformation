@@ -37,7 +37,7 @@ public class CustomCountDownTimer implements Runnable{
         }
     }
     //开启倒计时
-    public void srart(){
+    public void start(){
         isRun = true;
         handler.post(this);
     }
