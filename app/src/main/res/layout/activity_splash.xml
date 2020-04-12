@@ -21,7 +21,8 @@
         android:text="跳过"
         android:background="@drawable/shape_splash"
         android:layout_width="90dp"
-        android:layout_height="wrap_content"></TextView>
+        android:layout_height="wrap_content">
+    </TextView>
 
 
 </FrameLayout>

@@ -7,7 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 
-
+/*
+ * @Author Sha
+ * @Date 2020/4/8
+ * @Des 基类
+ */
 public class BaseActivity extends AppCompatActivity {
 
     @Override

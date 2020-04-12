@@ -2,7 +2,6 @@ package com.example.todayinformation;
 
 import android.os.Handler;
 
-import java.util.logging.LogRecord;
 
 public class CustomCountDownTimer implements Runnable{
     private int time;

@@ -16,28 +16,43 @@ import butterknife.BindView;
 @Viewinject(mainlayoutid = R.layout.activity_splash)
 public class SplashActivity extends AppCompatActivity {
 
-    private FullScreenVideoView mVideoView;
-    private TextView mTvTimer;
-    private CustomCountDownTimer timer;
+    @BindView(R.id.vv_play)
+    FullScreenVideoView  mVideoView;
+    @BindView(R.id.tv_splash_timer)
+    TextView mTvTimer;
+
+    private SplashTimerPresenter timerPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        initTimerPresenter();
+        initListener();
+        initVideo();
+    }
 
-        mVideoView = (FullScreenVideoView) findViewById(R.id.vv_play);
-        mTvTimer = (TextView) findViewById(R.id.tv_splash_timer);
-        mTvTimer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SplashActivity.this,MainActivity.class));
-            }
-        });
+    private void initTimerPresenter() {
+        timerPresenter = new SplashTimerPresenter(this);
+        timerPresenter.initTimer();
+    }
+
+    private void initVideo() {
+        //找到视频文件
         mVideoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + File.separator + R.raw.splash));
+        //播放视频
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mp.start();
+            }
+        });
+    }
+
+    private void initListener() {
+        mTvTimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
             }
         });
         mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -46,23 +61,15 @@ public class SplashActivity extends AppCompatActivity {
                 mp.start();
             }
         });
-        timer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
-            @Override
-            public void onTicker(int time) {
-                mTvTimer.setText(time + "秒");
-            }
-
-            @Override
-            public void onFinish() {
-                mTvTimer.setText("跳过");
-            }
-        });
-        timer.start();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        timer.cancel();
+        timerPresenter.cancel();
+    }
+
+    public void setTvTimer(String s) {
+        mTvTimer.setText(s);
     }
 }

@@ -11,8 +11,13 @@ import android.widget.RadioGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
-
+/*
+ * @Author Sha
+ * @Date 2020/4/8
+ * @Des 主页
+ */
 @Viewinject(mainlayoutid = R.layout.activity_main)
 public class MainActivity extends BaseActivity {
 

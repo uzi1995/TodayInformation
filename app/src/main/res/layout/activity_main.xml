@@ -16,11 +16,11 @@
             android:layout_marginBottom="@dimen/dp_40"
             android:layout_marginRight="@dimen/dp_40"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+            android:layout_height="wrap_content">
 
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     </FrameLayout>
-
 
     <FrameLayout
         android:id="@+id/fl_main_bottom"
@@ -40,14 +40,17 @@
                 android:id="@+id/rb_main_shanghai"
                 style="@style/main_tab_rb_style"
                 android:drawableTop="@drawable/selector_main_top_tab_shanghai"
-                android:text="@string/str_main_shanghai"></RadioButton>
+                android:text="@string/str_main_shanghai">
+
+            </RadioButton>
 
             <RadioButton
                 android:id="@+id/rb_main_hangzhou"
                 style="@style/main_tab_rb_style"
                 android:drawableTop="@drawable/selector_main_top_tab_hangzhou"
-                android:text="@string/str_main_hangzhou"></RadioButton>
+                android:text="@string/str_main_hangzhou">
 
+            </RadioButton>
 
         </RadioGroup>
 
@@ -75,6 +78,5 @@
 
 
     </FrameLayout>
-
 
 </RelativeLayout>
