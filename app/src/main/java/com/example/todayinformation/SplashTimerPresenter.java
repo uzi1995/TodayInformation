@@ -1,8 +1,12 @@
 package com.example.todayinformation;
 
+
+/*
+ * @Author Sha
+ * @Date 2020/4/12
+ * @Des 倒计时功能P层
+ */
 public class SplashTimerPresenter {
-
-
     private final SplashActivity mActivity;
     private CustomCountDownTimer timer;
 
@@ -11,7 +15,6 @@ public class SplashTimerPresenter {
     }
 
     public void initTimer() {
-        //实现连续播放
         timer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
             @Override
             public void onTicker(int time) {

@@ -12,7 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.File;
 
 import butterknife.BindView;
-
+/*
+ * @Author Sha
+ * @Date 2020/4/12
+ * @Des 闪屏页面
+ */
 @Viewinject(mainlayoutid = R.layout.activity_splash)
 public class SplashActivity extends AppCompatActivity {
 
