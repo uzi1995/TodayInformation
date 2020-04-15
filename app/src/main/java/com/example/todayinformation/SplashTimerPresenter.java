@@ -10,20 +10,21 @@ public class SplashTimerPresenter {
     private final SplashActivity mActivity;
     private CustomCountDownTimer timer;
 
-    public SplashTimerPresenter(SplashActivity Activity){
-        this.mActivity = Activity;
+    public SplashTimerPresenter(ISplashActivityContract.Iview view) {
+        super(view);
     }
+
 
     public void initTimer() {
         timer = new CustomCountDownTimer(5, new CustomCountDownTimer.ICountDownHandler() {
             @Override
             public void onTicker(int time) {
-                mActivity.setTvTimer(time + "秒");
+                getView().setTvTimer(time + "秒");
             }
 
             @Override
             public void onFinish() {
-                mActivity.setTvTimer("跳过");
+                getView().setTvTimer("跳过");
             }
         });
         timer.start();

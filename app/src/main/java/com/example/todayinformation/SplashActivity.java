@@ -18,18 +18,17 @@ import butterknife.BindView;
  * @Des 闪屏页面
  */
 @Viewinject(mainlayoutid = R.layout.activity_splash)
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity implements ISplashActivityContract.Iview{
 
     @BindView(R.id.vv_play)
     FullScreenVideoView  mVideoView;
     @BindView(R.id.tv_splash_timer)
     TextView mTvTimer;
 
-    private SplashTimerPresenter timerPresenter;
+    private ISplashActivityContract.IPresenter timerPresenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void afterBindView() {
         initTimerPresenter();
         initListener();
         initVideo();
@@ -57,6 +56,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                finish();
             }
         });
         mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
