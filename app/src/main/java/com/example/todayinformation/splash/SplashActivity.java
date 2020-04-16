@@ -1,13 +1,15 @@
-package com.example.todayinformation;
+package com.example.todayinformation.splash;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.todayinformation.base.BaseActivity;
+import com.example.todayinformation.main.MainActivity;
+import com.example.todayinformation.R;
+import com.example.todayinformation.base.Viewinject;
 
 import java.io.File;
 
@@ -21,7 +23,7 @@ import butterknife.BindView;
 public class SplashActivity extends BaseActivity implements ISplashActivityContract.Iview{
 
     @BindView(R.id.vv_play)
-    FullScreenVideoView  mVideoView;
+    FullScreenVideoView mVideoView;
     @BindView(R.id.tv_splash_timer)
     TextView mTvTimer;
 

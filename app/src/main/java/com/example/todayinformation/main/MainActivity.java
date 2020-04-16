@@ -1,6 +1,5 @@
-package com.example.todayinformation;
+package com.example.todayinformation.main;
 
-import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -8,10 +7,14 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import androidx.fragment.app.Fragment;
+
+import com.example.todayinformation.R;
+import com.example.todayinformation.base.BaseActivity;
+import com.example.todayinformation.base.Viewinject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 /*
  * @Author Sha
@@ -19,7 +22,9 @@ import butterknife.OnClick;
  * @Des 主页
  */
 @Viewinject(mainlayoutid = R.layout.activity_main)
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements IMainActivityContract.Iview{
+
+    IMainActivityContract.IPresenter mPresenter = new MainActivityPresenter(this);
 
     @BindView(R.id.fac_main_home)
     FloatingActionButton facMainHome;
@@ -40,16 +45,15 @@ public class MainActivity extends BaseActivity {
 
     private boolean isChangeTopOrBottom;
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        //setContentView(R.layout.activity_main);
-//
-//    }
-
     @Override
     public void afterBindView() {
+        initHomeFragment();
         changeAnima(rgMainBottom, rgMainTop);
+    }
+
+    //初始化fragment
+    private void initHomeFragment() {
+        mPresenter.initHomeFragment();
     }
 
     @OnClick(R.id.fac_main_home)
@@ -60,11 +64,37 @@ public class MainActivity extends BaseActivity {
                 isChangeTopOrBottom = !isChangeTopOrBottom;
                 if (isChangeTopOrBottom) {
                     changeAnima(rgMainTop, rgMainBottom);
+                    handleTopPosition();
                 } else {
                     changeAnima(rgMainBottom, rgMainTop);
+                    handleBottomPosition();
                 }
                 break;
         }
+    }
+
+    //北京 深圳
+    private void handleBottomPosition() {
+        if(mPresenter.getTopPosition() != 1){
+            mPresenter.replaceFragment(0);
+            rbMainShanghai.setChecked(true);
+        }else{
+            mPresenter.replaceFragment(1);
+            rbMainHangzhou.setChecked(true);
+        }
+
+    }
+
+    //上海 杭州
+    private void handleTopPosition() {
+        if(mPresenter.getBottomPosition() != 3){
+            mPresenter.replaceFragment(2);
+            rbMainNavHomeBeijing.setChecked(true);
+        }else{
+            mPresenter.replaceFragment(3);
+            rbMainNavCarSourceShenzhen.setChecked(true);
+        }
+
     }
 
     private void changeAnima(RadioGroup gone, RadioGroup show) {
@@ -80,5 +110,20 @@ public class MainActivity extends BaseActivity {
         Animation animationShow = AnimationUtils.loadAnimation(this, R.anim.main_tab_translate_show);
         show.startAnimation(animationShow);
         show.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showFragment(Fragment mFragment) {
+        getSupportFragmentManager().beginTransaction().show(mFragment).commit();
+    }
+
+    @Override
+    public void addFragment(Fragment mFragment) {
+        getSupportFragmentManager().beginTransaction().add(R.id.fl_main_content, mFragment).commit();
+    }
+
+    @Override
+    public void hideFragment(Fragment mFragment) {
+        getSupportFragmentManager().beginTransaction().hide(mFragment).commit();
     }
 }

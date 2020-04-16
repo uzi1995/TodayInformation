@@ -6,7 +6,11 @@ import android.os.Bundle;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-
+/*
+ * @Author Sha
+ * @Date 2020/4/16
+ * @Des 静态代理
+ */
 public class MvpControler implements ILifeCircle{
 
     //存放的是P层的实例

@@ -1,4 +1,5 @@
-package com.example.todayinformation;
+package com.example.todayinformation.splash;
+
 
 import com.example.todayinformation.mvp.ILifeCircle;
 import com.example.todayinformation.mvp.IMvpView;
@@ -11,7 +12,7 @@ public interface ISplashActivityContract {
 
     }
 
-    interface IPresenter extends ILifeCircle{
+    interface IPresenter extends ILifeCircle {
         void initTimer();
     }
 

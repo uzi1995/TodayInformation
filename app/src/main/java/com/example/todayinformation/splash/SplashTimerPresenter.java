@@ -1,13 +1,14 @@
-package com.example.todayinformation;
+package com.example.todayinformation.splash;
 
+
+import com.example.todayinformation.mvp.base.BaseMvpPresenter;
 
 /*
  * @Author Sha
  * @Date 2020/4/12
  * @Des 倒计时功能P层
  */
-public class SplashTimerPresenter {
-    private final SplashActivity mActivity;
+public class SplashTimerPresenter extends BaseMvpPresenter<ISplashActivityContract.Iview> implements ISplashActivityContract.IPresenter{
     private CustomCountDownTimer timer;
 
     public SplashTimerPresenter(ISplashActivityContract.Iview view) {
@@ -33,4 +34,18 @@ public class SplashTimerPresenter {
     public void cancel() {
         timer.cancel();
     }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cancel();
+    }
+
+    //防止空指针异常
+    @Override
+    protected ISplashActivityContract.Iview getEmptyView() {
+        return ISplashActivityContract.emptyView;
+    }
+
 }
