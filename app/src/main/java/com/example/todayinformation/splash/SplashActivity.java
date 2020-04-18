@@ -69,11 +69,7 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        timerPresenter.cancel();
-    }
+
 
     public void setTvTimer(String s) {
         mTvTimer.setText(s);
