@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.todayinformation.R;
 import com.example.todayinformation.base.BaseActivity;
 import com.example.todayinformation.base.Viewinject;
+import com.example.todayinformation.main.tools.MainConstantTool;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.BindView;
@@ -49,6 +50,44 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     public void afterBindView() {
         initHomeFragment();
         changeAnima(rgMainBottom, rgMainTop);
+        initCheckListener();
+    }
+
+    private void initCheckListener() {
+
+        rbMainShanghai.setChecked(true);
+        rgMainTop.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == mPresenter.getCurrentCheckedId()){
+                    return;
+                }
+                switch(checkedId){
+                    case R.id.rb_main_shanghai:
+                        mPresenter.replaceFragment(MainConstantTool.SHANGHAI);
+                        break;
+                    case R.id.rb_main_hangzhou:
+                        mPresenter.replaceFragment(MainConstantTool.HANGZHOU);
+                        break;
+                }
+            }
+        });
+        rgMainBottom.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == mPresenter.getCurrentCheckedId()){
+                    return;
+                }
+                switch(checkedId){
+                    case R.id.rb_main_nav_home_beijing:
+                        mPresenter.replaceFragment(MainConstantTool.BEIJING);
+                        break;
+                    case R.id.rb_main_nav_car_source_shenzhen:
+                        mPresenter.replaceFragment(MainConstantTool.SHENZHEN);
+                        break;
+                }
+            }
+        });
     }
 
     //初始化fragment
