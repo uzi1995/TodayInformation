@@ -3,12 +3,12 @@ package com.example.todayinformation.main;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.mvp.mvp.base.BaseMvpPresenter;
 import com.example.todayinformation.R;
 import com.example.todayinformation.main.beijing.BeiJingFragment;
 import com.example.todayinformation.main.hangzhou.HangZhouFragment;
 import com.example.todayinformation.main.shanghai.ShangHaiFragment;
 import com.example.todayinformation.main.shenzhen.ShenZhenFragment;
-import com.example.todayinformation.mvp.base.BaseMvpPresenter;
 
 public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContract.Iview> implements IMainActivityContract.IPresenter{
 

@@ -1,7 +1,7 @@
 package com.example.todayinformation.splash;
 
 
-import com.example.todayinformation.mvp.base.BaseMvpPresenter;
+import com.example.mvp.mvp.base.BaseMvpPresenter;
 
 /*
  * @Author Sha

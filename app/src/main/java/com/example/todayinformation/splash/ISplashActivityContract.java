@@ -1,13 +1,13 @@
 package com.example.todayinformation.splash;
 
 
-import com.example.todayinformation.mvp.ILifeCircle;
-import com.example.todayinformation.mvp.IMvpView;
-import com.example.todayinformation.mvp.MvpControler;
+import com.example.mvp.mvp.ILifeCircle;
+import com.example.mvp.mvp.IMvpView;
+import com.example.mvp.mvp.MvpControler;
 
 public interface ISplashActivityContract {
 
-    interface Iview extends IMvpView {
+    interface Iview extends IMvpView{
         void setTvTimer(String timer);
 
     }

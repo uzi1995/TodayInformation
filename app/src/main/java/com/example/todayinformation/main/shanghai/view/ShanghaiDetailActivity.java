@@ -3,6 +3,7 @@ package com.example.todayinformation.main.shanghai.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -14,11 +15,27 @@ import androidx.core.view.ViewCompat;
 import com.example.todayinformation.R;
 import com.example.todayinformation.base.BaseActivity;
 import com.example.todayinformation.base.Viewinject;
+import com.example.todayinformation.main.shanghai.lf.IShanghaiDetailContract;
+import com.example.todayinformation.main.shanghai.manager.GetXiaoHuaTask;
+import com.example.todayinformation.main.shanghai.module.ShangHaiDetailHttpTask;
+import com.example.todayinformation.main.shanghai.presenter.ShanghaiDetailPresenter;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 
 import butterknife.BindView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 @Viewinject(mainlayoutid = R.layout.activity_shanghai_detail)
-public class ShanghaiDetailActivity extends BaseActivity {
+public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDetailContract.Iview {
+
+    IShanghaiDetailContract.IPresenter mPresenter = new ShanghaiDetailPresenter(this);
+
 
     public static String mActivityOptionsCompat = "ShanghaiDetailActivity";
 
@@ -28,6 +45,42 @@ public class ShanghaiDetailActivity extends BaseActivity {
     @Override
     public void afterBindView() {
         initAnima();
+        initGetNetData();
+//        initPostNetData();
+    }
+
+    private void initPostNetData() {
+
+    }
+
+    //发送网络请求数据
+    private void initGetNetData() {
+        // TODO: 2020/4/26 和老师的不一样 
+        mPresenter.getNetData();
+
+//        GetXiaoHuaTask task = new GetXiaoHuaTask();
+//        task.execute("desc", "1", "1");
+//        Object desc = new ShangHaiDetailHttpTask().getXiaoHuaList("desc", "1", "1");
+//
+//        if(desc instanceof Response){
+//            Response response = (Response) desc;
+//            Log.e("initGetNetData", response.body().toString());
+//        }
+
+//        OkHttpClient client = new OkHttpClient();
+//        Request request = new Request.Builder().url("http://www.baidu.com").get().build();
+//        Call call = client.newCall(request);
+//        call.enqueue(new Callback() {
+//            @Override
+//            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+//                Log.e("initGetNetData", "onFailure" + e);
+//            }
+//
+//            @Override
+//            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+//                Log.e("initGetNetData", "onResponse" + response.body().string());
+//            }
+//        });
     }
 
     private void initAnima() {

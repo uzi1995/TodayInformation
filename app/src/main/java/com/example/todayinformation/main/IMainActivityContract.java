@@ -3,9 +3,10 @@ package com.example.todayinformation.main;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.todayinformation.mvp.ILifeCircle;
-import com.example.todayinformation.mvp.IMvpView;
-import com.example.todayinformation.mvp.MvpControler;
+import com.example.mvp.mvp.ILifeCircle;
+import com.example.mvp.mvp.IMvpView;
+import com.example.mvp.mvp.MvpControler;
+
 
 public interface IMainActivityContract {
 
