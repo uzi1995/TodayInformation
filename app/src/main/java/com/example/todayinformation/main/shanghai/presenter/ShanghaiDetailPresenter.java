@@ -23,7 +23,7 @@ public class ShanghaiDetailPresenter extends BasePresenter<IShanghaiDetailContra
     }
 
     @Override
-    public void getNetData() {
+    public void getNetData(int pagesize) {
 //        submitTask(new LfTask() {
 //            //一定要回调到主线程
 //            @Override
@@ -51,7 +51,7 @@ public class ShanghaiDetailPresenter extends BasePresenter<IShanghaiDetailContra
         submitTask(new JHTask<ShangHaiDetailBean>() {
             @Override
             public IResult<ShangHaiDetailBean> onBackground() {
-                return new ShangHaiDetailHttpTask<ShangHaiDetailBean>().getXiaoHuaList("desc", "1", "1");
+                return new ShangHaiDetailHttpTask<ShangHaiDetailBean>().getXiaoHuaList("desc", "1", pagesize + "");
             }
 
             @Override
@@ -60,6 +60,7 @@ public class ShanghaiDetailPresenter extends BasePresenter<IShanghaiDetailContra
 //                Gson gson = new Gson();
 //                String s = gson.toJson(data);
 //                Log.e("ShanghaiDetailPresenter", s);
+                getView().showData(data);
             }
         });
     }

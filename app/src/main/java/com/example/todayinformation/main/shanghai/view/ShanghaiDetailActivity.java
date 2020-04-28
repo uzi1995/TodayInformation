@@ -15,6 +15,7 @@ import androidx.core.view.ViewCompat;
 import com.example.todayinformation.R;
 import com.example.todayinformation.base.BaseActivity;
 import com.example.todayinformation.base.Viewinject;
+import com.example.todayinformation.main.shanghai.dto.ShangHaiDetailBean;
 import com.example.todayinformation.main.shanghai.lf.IShanghaiDetailContract;
 import com.example.todayinformation.main.shanghai.manager.GetXiaoHuaTask;
 import com.example.todayinformation.main.shanghai.module.ShangHaiDetailHttpTask;
@@ -56,7 +57,7 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
     //发送网络请求数据
     private void initGetNetData() {
         // TODO: 2020/4/26 和老师的不一样 
-        mPresenter.getNetData();
+        //mPresenter.getNetData();
 
 //        GetXiaoHuaTask task = new GetXiaoHuaTask();
 //        task.execute("desc", "1", "1");
@@ -85,7 +86,7 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 
     private void initAnima() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            ViewCompat.setTransitionName(ivShanghaiDetail, mActivityOptionsCompat);
+            //ViewCompat.setTransitionName(ivShanghaiDetail, mActivityOptionsCompat);
             //开启转场动画
             startPostponedEnterTransition();
         }
@@ -100,5 +101,10 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
             ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pair);
             ActivityCompat.startActivity(activity, intent, optionsCompat.toBundle());
         }
+    }
+
+    @Override
+    public void showData(ShangHaiDetailBean data) {
+
     }
 }
