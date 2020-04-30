@@ -17,10 +17,10 @@ public class ShanghaiDetailPresenter extends BasePresenter<IShanghaiDetailContra
         super(view);
     }
 
-    @Override
-    protected IShanghaiDetailContract.Iview getEmptyView() {
-        return IShanghaiDetailContract.emptyView;
-    }
+//    @Override
+//    protected IShanghaiDetailContract.Iview getEmptyView() {
+//        return IShanghaiDetailContract.emptyView;
+//    }
 
     @Override
     public void getNetData(int pagesize) {

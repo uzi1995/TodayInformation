@@ -39,6 +39,9 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.5.0")
     //lottie
     implementation "com.airbnb.android:lottie:2.2.5"
+    //apt
+    implementation project(':annotation')
+    annotationProcessor project(':apt')
     //module的依赖引入
     implementation project(path: ':mvp')
     implementation project(path: ':http')

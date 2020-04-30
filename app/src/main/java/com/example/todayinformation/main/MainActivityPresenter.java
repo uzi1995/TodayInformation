@@ -5,12 +5,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.mvp.mvp.base.BaseMvpPresenter;
 import com.example.todayinformation.R;
+import com.example.todayinformation.base.BasePresenter;
 import com.example.todayinformation.main.beijing.BeiJingFragment;
 import com.example.todayinformation.main.hangzhou.HangZhouFragment;
 import com.example.todayinformation.main.shanghai.ShangHaiFragment;
 import com.example.todayinformation.main.shenzhen.ShenZhenFragment;
 
-public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContract.Iview> implements IMainActivityContract.IPresenter{
+public class MainActivityPresenter extends BasePresenter<IMainActivityContract.Iview> implements IMainActivityContract.IPresenter{
 
     //当前fragment的角标
     private int mCurrentFragmentIndex;
@@ -24,10 +25,10 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
         super(view);
     }
 
-    @Override
-    protected IMainActivityContract.Iview getEmptyView() {
-        return IMainActivityContract.emptyView;
-    }
+//    @Override
+//    protected IMainActivityContract.Iview getEmptyView() {
+//        return IMainActivityContract.emptyView;
+//    }
 
     @Override
     public void initHomeFragment() {
