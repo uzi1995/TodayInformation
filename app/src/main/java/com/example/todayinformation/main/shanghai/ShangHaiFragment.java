@@ -17,13 +17,17 @@ import com.example.todayinformation.base.Viewinject;
 import com.example.todayinformation.base.tools.AnimationUtil;
 import com.example.todayinformation.base.tools.DoubleClickListener;
 import com.example.todayinformation.main.shanghai.adapter.ShanghaiAdapter2;
+import com.example.todayinformation.main.shanghai.lf.IPlayerServiceContract;
+import com.example.todayinformation.main.shanghai.presenter.PlayerServicePresenter;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import butterknife.BindView;
 
 @Viewinject(mainlayoutid = R.layout.fragment_shanghai)
-public class ShangHaiFragment extends BaseFragment {
+public class ShangHaiFragment extends BaseFragment implements IPlayerServiceContract.Iview{
+
+    IPlayerServiceContract.IPresenter mPresenter = new PlayerServicePresenter(this);
 
     @BindView(R.id.tv_shanghai_welcome)
     TextView tvShanghaiWelcome;
@@ -81,7 +85,7 @@ public class ShangHaiFragment extends BaseFragment {
                     mTvTitle.setVisibility(View.GONE);
                     AnimationUtil.startTranslationXAnim(tvShanghaiWelcome,tvShanghaiWelcome.getTranslationX(),tvShanghaiWelcome.getTranslationX() + 150,null);
                     AnimationUtil.startTranslationXAnim(mTvTitle,mTvTitle.getTranslationX(),mTvTitle.getTranslationX() + 150,null);
-                    //mPresenter.playOrPaused();
+                    mPresenter.playOrPaused();
 
                 } else {
                     //播放音视频动画
@@ -91,7 +95,7 @@ public class ShangHaiFragment extends BaseFragment {
                         public void onAnimationEnd(Animator animation) {
                             mTvTitle.setVisibility(View.VISIBLE);
                             //启动Service 去 播放后台音乐
-                           // mPresenter.bindService(mContext);
+                            mPresenter.bindService(mContext);
                         }
                     });
                 }
