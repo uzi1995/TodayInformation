@@ -12,6 +12,10 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import androidx.core.view.ViewCompat;
 
+import com.example.ipc.CallBack;
+import com.example.ipc.IpcManager;
+import com.example.ipc.requst.IpcRequest;
+import com.example.ipc.result.IResult;
 import com.example.todayinformation.R;
 import com.example.todayinformation.base.BaseActivity;
 import com.example.todayinformation.base.Viewinject;
@@ -28,6 +32,7 @@ import java.io.IOException;
 import butterknife.BindView;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -48,6 +53,18 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
         initAnima();
         initGetNetData();
 //        initPostNetData();
+        initIpc();
+    }
+
+    private void initIpc() {
+        IpcRequest request = new IpcRequest("shanghaiDetail");
+        IpcManager.getInstance(this).excuteAsync(request, new CallBack() {
+            @Override
+            public void callBack(IResult result) {
+                String data = result.data();
+                Log.e("数据请求", data);
+            }
+        });
     }
 
     private void initPostNetData() {
@@ -82,6 +99,33 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
 //                Log.e("initGetNetData", "onResponse" + response.body().string());
 //            }
 //        });
+        OkHttpClient client = new OkHttpClient(); // okhttp 配置一些默认
+        //2、构建请求 1）url 2）参数
+        HttpUrl.Builder builder = HttpUrl.parse("https://www.baidu.com").newBuilder();
+//        builder.addQueryParameter("sort", "desc");
+//        builder.addQueryParameter("page", "1");
+//        builder.addQueryParameter("pagesize", "1");
+//        builder.addQueryParameter("time", "" + System.currentTimeMillis()/1000);
+//        builder.addQueryParameter("key", "bbc57dd5e4f05991aff09eafd2e667e0");
+        //3、构建Request
+        Request request = new Request.Builder()
+                .url(builder.build())
+                .get()
+                .build(); //建造者设计模式
+        //4、构建Call
+        Call call = client.newCall(request);
+        //5 执行网络请求
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("initGetNetData","onFailure" + e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.e("initGetNetData","onResponse" + response.body().string());
+            }
+        });
     }
 
     private void initAnima() {
@@ -93,7 +137,7 @@ public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDet
     }
 
     //用于Android5.0系统的界面转场动画：共享元素动画
-    public static void start(Activity activity, View view){
+    public static void start_5_0(Activity activity, View view){
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             Intent intent = new Intent(activity, ShanghaiDetailActivity.class);

@@ -88,7 +88,7 @@ public class ShanghaiAdapter extends RecyclerView.Adapter {
             this.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ShanghaiDetailActivity.start(mContext, mIv);
+                    ShanghaiDetailActivity.start_5_0(mContext,mIv);
                 }
             });
         }

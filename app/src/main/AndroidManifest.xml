@@ -4,6 +4,7 @@
     package="com.example.todayinformation">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".base.TodayInformationApplication"
@@ -23,11 +24,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <provider
+            android:authorities="com.news.today.process.data"
+            android:name=".main.beijing.MainProcessDataProvider" />
+        <service android:name=".main.beijing.MainProcessService"/>
         <activity android:name=".main.MainActivity">
 
         </activity>
-        <activity android:name=".main.shanghai.view.ShanghaiDetailActivity">
+        <activity
+            android:process=":shanghai.detatil"
+            android:name=".main.shanghai.view.ShanghaiDetailActivity">
 
         </activity>
 

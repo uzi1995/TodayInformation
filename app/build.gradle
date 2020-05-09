@@ -48,6 +48,7 @@ dependencies {
     implementation project(path: ':task')
     implementation project(path: ':player')
     implementation project(path: ':refresh')
+    implementation project(path: ':ipc')
     //cardview
     implementation 'androidx.cardview:cardview:1.0.0'
 
